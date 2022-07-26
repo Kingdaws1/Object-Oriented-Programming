@@ -54,13 +54,40 @@ public class AccountTest {
 	}
 	
 	public static void main(String[] args) {
+		Scanner input = new Scanner(System.in);
 		Account[] accountsArray = new Account[10];
 		for (int i = 0; i < 10; i++) {
 			accountsArray[i] = new Account(i, 100);
 		}
+		CheckingAccount[] checkingAccountArray = new CheckingAccount[10];
+		for (int i = 0; i < 10; i++) {
+			checkingAccountArray[i] = new CheckingAccount(i, 100);
+		}
+		SavingsAccount[] SavingsAccountArray = new SavingsAccount[10];
+		for (int i = 0; i < 10; i++) {
+			SavingsAccountArray[i] = new SavingsAccount(i, 100);
+		}
 		while(true) {
+			System.out.println("Enter an option for the account type: \n"
+					+ "1. Account \n"
+					+ "2. Checking Account \n"
+					+ "3. Savings Account");
+			int accountType = input.nextInt();
+			if (accountType == 1) {
 			accountNumber = userIdInput(accountsArray);
 			userOptions(accountsArray, accountNumber);
+			}
+			else if (accountType == 2) {
+			accountNumber = userIdInput(checkingAccountArray);
+			userOptions(checkingAccountArray, accountNumber);
+			}
+			else if (accountType == 3) {
+			accountNumber = userIdInput(SavingsAccountArray);
+			userOptions(SavingsAccountArray, accountNumber);
+			}
+			else {
+				System.out.println("That is not a valid input. Please enter a number.");
+			}
 		}
 	}
 
