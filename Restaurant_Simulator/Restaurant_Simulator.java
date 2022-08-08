@@ -9,11 +9,35 @@ public class Restaurant_Simulator {
 		String name = input.next();
 		newUser.setName(name);
 		System.out.println("Welcome to the restaurant industry " + newUser.getName() + "!");
-		System.out.println("Please enter an option for your restaurant genre: \n"
-				+ "1. Italian \n"
-				+ "2. Mexican \n"
-				+ "3. American \n"
-				+ "4. Chinese");
+		boolean typeCheck = false;
+		while (typeCheck == false) {
+			System.out.println("Please enter an option for your restaurant genre: \n"
+					+ "1. Italian \n"
+					+ "2. Mexican \n"
+					+ "3. American \n"
+					+ "4. Chinese");
+			int userType = input.nextInt();
+			if (userType == 1) {
+				newUser.setRestaurantType("Italian");
+				typeCheck = true;
+			}
+			else if (userType == 2) {
+				newUser.setRestaurantType("Mexican");
+				typeCheck = true;
+					}
+			else if (userType == 3) {
+				newUser.setRestaurantType("American");
+				typeCheck = true;
+			}
+			else if (userType == 4) {
+				newUser.setRestaurantType("Chinese");
+				typeCheck = true;
+			}
+			else {
+				System.out.println("Please input a valid number.");
+			}
+		}
+		System.out.println("Aweseome! Your restaurant name will be " + newUser.getRestaurantName());
 		boolean whileLoop = false;
 		while (whileLoop == false) {
 			System.out.println("Enter an option to learn about that location: \n"
@@ -50,6 +74,8 @@ public class Restaurant_Simulator {
 				+ "3. Radio ad (250$) \n"
 				+ "4. TV ad (750$)");
 		System.out.println("Your Restaurant Is Open!");
+		DayOfWeek userDay = new DayOfWeek();
+		System.out.println(userDay.getStringDay() + " Week: " + userDay.getWeek());
 		System.out.println("It is 3pm, so far you have served (insert number of people) "
 				+ "and earned (insert money made)");
 		System.out.println("It is 10pm, today you served (insert number of people) "
