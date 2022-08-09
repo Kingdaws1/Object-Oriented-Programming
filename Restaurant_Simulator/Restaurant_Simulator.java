@@ -38,8 +38,8 @@ public class Restaurant_Simulator {
 			}
 		}
 		System.out.println("Aweseome! Your restaurant name will be " + newUser.getRestaurantName());
-		boolean whileLoop = false;
-		while (whileLoop == false) {
+		boolean locationLoop = false;
+		while (locationLoop == false) {
 			System.out.println("Enter an option to learn about that location: \n"
 					+ "1. Main Street Hole \n"
 					+ "2. Outdoor Mall Corner \n"
@@ -47,24 +47,66 @@ public class Restaurant_Simulator {
 			int locationChoice = input.nextInt();
 			if (locationChoice == 1) {
 				Main_street_hole.getDescription();
+				System.out.println("Choose this location? Type 'yes' or 'no': ");
+				String yesOrNoInput = input.next();
+				if (yesOrNoInput.equalsIgnoreCase("yes")) {
+					Locations userLocation = new Main_street_hole();
+					newUser.setLocation(userLocation);
+					locationLoop = true;
+				}
 			}
 			else if (locationChoice == 2) {
 				Outdoor_mall_corner.getDescription();
+				System.out.println("Choose this location? Type 'yes' or 'no': ");
+				String yesOrNoInput = input.next();
+				if (yesOrNoInput.equalsIgnoreCase("yes")) {
+					Locations userLocation = new Outdoor_mall_corner();
+					newUser.setLocation(userLocation);
+					locationLoop = true;
+				}
 			}
 			else if (locationChoice == 3) {
 				Business_zone_stand_alone.getDescription();
+				System.out.println("Choose this location? Type 'yes' or 'no': ");
+				String yesOrNoInput = input.next();
+				if (yesOrNoInput.equalsIgnoreCase("yes")) {
+					Locations userLocation = new Business_zone_stand_alone();
+					newUser.setLocation(userLocation);
+					locationLoop = true;
+				}
 			}
-			
 		}
-		System.out.println("Enter an option for a bank loan: \n"
-				+ "1. 10,000$ at 4.0% \n"
-				+ "2. 20,000$ at 2.5% \n"
-				+ "3. 30,000$ at 1.5%");
-		System.out.println("Enter an option to learn about the employee candidate: \n"
-				+ "1. Stan \n"
-				+ "2. Bob"
-				+ "3. Mary"
-				+ "4. Jane");
+		boolean employeeChoiceLoop = false;
+		while (employeeChoiceLoop == false) {
+			System.out.println("Enter an option to learn about the employee candidate: \n"
+					+ "1. John \n"
+					+ "2. Bob \n"
+					+ "3. Mary \n"
+					+ "4. Jane");
+			int employeeChoice = input.nextInt();
+			if (employeeChoice == 1) {
+				Employees newJohn = new EmployeeJohn();
+				newJohn.description();
+				System.out.println("Hire this employee? \n"
+						+ "Type yes or no: ");
+				String employeeYesOrNo = input.next();
+				if (employeeYesOrNo.equalsIgnoreCase("yes")) {
+					
+				}
+			}
+			if (employeeChoice == 2) {
+				Employees newBob = new EmployeeBob();
+				newBob.description();
+			}
+			if (employeeChoice == 3) {
+				Employees newMary = new EmployeeMary();
+				newMary.description();
+			}
+			if (employeeChoice == 4) {
+				Employees newJane = new EmployeeJane();
+				newJane.description();
+			}
+		}
 		System.out.println("Enter the amount of supplies you would like to order \n"
 				+ "for the first week: ");
 		System.out.println("Enter the price would like to sell your items at: ");

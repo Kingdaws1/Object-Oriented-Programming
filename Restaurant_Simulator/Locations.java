@@ -5,6 +5,7 @@ public abstract class Locations {
 	double multiplier = 1.0;
 	int customersPerDay = (int)(customers * multiplier);
 	int rent = 1200;
+	String locationName = "";
 	
 	public Locations() {
 		double customers = 100;
@@ -19,7 +20,7 @@ public abstract class Locations {
 	}
 	
 	public int getCustomersPerDay() {
-		return(this.customersPerDay);
+		return(customersPerDay);
 	}
 	
 	public void setMultiplier(double addToMultiplier) {
@@ -28,6 +29,18 @@ public abstract class Locations {
 	
 	public int getRent() {
 		return(this.rent);
+	}
+	
+	public double getCustomers() {
+		return(this.customers);
+	}
+	
+	public double getMultiplier() {
+		return(this.multiplier);
+	}
+	
+	public String getLocationName() {
+		return(this.locationName);
 	}
 
 }

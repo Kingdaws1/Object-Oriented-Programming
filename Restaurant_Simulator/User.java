@@ -4,6 +4,11 @@ public class User {
 	String name = "";
 	String type = "";
 	String restaurantName = "";
+	Locations userLocation = null;
+	int rent = 0;
+	double multiplier = 1.0;
+	double customers = 0;
+	int customersPerDay = 0;
 	
 	public User() {
 		this.name = "";
@@ -27,6 +32,38 @@ public class User {
 	
 	public void setRestaurantType(String newType) {
 		this.type = newType;
+	}
+	
+	public void setLocation(Locations newUserLocation) {
+		this.userLocation = newUserLocation;
+	}
+	
+	public Locations getUserLocation() {
+		return(this.userLocation);
+	}
+	
+	public int getRent() {
+		rent = this.userLocation.getRent();
+		return(this.rent);
+	}
+	
+	public double getCustomers() {
+		customers = this.userLocation.getCustomers();
+		return(customers);
+	}
+	
+	public double getMultiplier() {
+		multiplier = this.userLocation.getMultiplier();
+		return(multiplier);
+	}
+	
+	public  int getCustomersPerDay() {
+		customersPerDay = (int) (this.getCustomers() * this.getMultiplier());
+		return(customersPerDay);
+	}
+
+	public String getLocationName() {
+		return(this.userLocation.getLocationName());
 	}
 
 }
