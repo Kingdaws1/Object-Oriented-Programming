@@ -77,6 +77,8 @@ public class Restaurant_Simulator {
 			}
 		}
 		boolean employeeChoiceLoop = false;
+		boolean weekdaysCovered = false;
+		boolean weekendsCovered = false;
 		while (employeeChoiceLoop == false) {
 			System.out.println("Enter an option to learn about the employee candidate: \n"
 					+ "1. John \n"
@@ -85,26 +87,75 @@ public class Restaurant_Simulator {
 					+ "4. Jane");
 			int employeeChoice = input.nextInt();
 			if (employeeChoice == 1) {
-				Employees newJohn = new EmployeeJohn();
-				newJohn.description();
+				Employees john = new EmployeeJohn();
+				if (newUser.employeeList.contains(john)) {
+					System.out.println("You have already hired John.");
+				}
+				else {
+				john.description();
 				System.out.println("Hire this employee? \n"
 						+ "Type yes or no: ");
 				String employeeYesOrNo = input.next();
 				if (employeeYesOrNo.equalsIgnoreCase("yes")) {
-					
+					newUser.addEmployee(john);
+					weekdaysCovered = true;
+				}
 				}
 			}
 			if (employeeChoice == 2) {
-				Employees newBob = new EmployeeBob();
-				newBob.description();
+				Employees bob = new EmployeeBob();
+				if (newUser.employeeList.contains(bob)) {
+					System.out.println("You have already hired Bob.");
+				}
+				else {
+				bob.description();
+				System.out.println("Hire this employee? \n"
+						+ "Type yes or no: ");
+				String employeeYesOrNo = input.next();
+				if (employeeYesOrNo.equalsIgnoreCase("yes")) {
+					newUser.addEmployee(bob);
+					weekendsCovered = true;
+				}
+				}
 			}
 			if (employeeChoice == 3) {
-				Employees newMary = new EmployeeMary();
-				newMary.description();
+				Employees mary = new EmployeeMary();
+				if (newUser.employeeList.contains(mary)) {
+					System.out.println("You have already hired Mary.");
+				}
+				else {
+				mary.description();
+				System.out.println("Hire this employee? \n"
+						+ "Type yes or no: ");
+				String employeeYesOrNo = input.next();
+				if (employeeYesOrNo.equalsIgnoreCase("yes")) {
+					newUser.addEmployee(mary);
+					weekendsCovered = true;
+				}
+				}
 			}
 			if (employeeChoice == 4) {
-				Employees newJane = new EmployeeJane();
-				newJane.description();
+				Employees jane = new EmployeeJane();
+				if (newUser.employeeList.contains(jane)) {
+					System.out.println("You have already hired Jane.");
+				}
+				else {
+				jane.description();
+				System.out.println("Hire this employee? \n"
+						+ "Type yes or no: ");
+				String employeeYesOrNo = input.next();
+				if (employeeYesOrNo.equalsIgnoreCase("yes")) {
+					newUser.addEmployee(jane);
+					weekdaysCovered = true;
+				}
+				}
+			}
+			if ((weekdaysCovered == true) && (weekendsCovered ==true)) {
+				employeeChoiceLoop = true;
+			}
+			else {
+				System.out.println("Before you can move on you need to make sure \n"
+						+ "all of the days of the week will be covered.");
 			}
 		}
 		System.out.println("Enter the amount of supplies you would like to order \n"

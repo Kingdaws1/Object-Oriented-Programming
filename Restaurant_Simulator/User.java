@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 
 public class User {
 
@@ -9,6 +10,7 @@ public class User {
 	double multiplier = 1.0;
 	double customers = 0;
 	int customersPerDay = 0;
+	ArrayList<Employees> employeeList = new ArrayList<>();
 	
 	public User() {
 		this.name = "";
@@ -64,6 +66,10 @@ public class User {
 
 	public String getLocationName() {
 		return(this.userLocation.getLocationName());
+	}
+	
+	public void addEmployee(Employees newEmployee) {
+		this.employeeList.add(newEmployee);
 	}
 
 }
