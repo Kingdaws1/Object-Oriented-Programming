@@ -11,6 +11,7 @@ public class User {
 	double customers = 0;
 	int customersPerDay = 0;
 	ArrayList<Employees> employeeList = new ArrayList<>();
+	MenuItems userMenuItems = null;
 	
 	public User() {
 		this.name = "";
@@ -70,6 +71,10 @@ public class User {
 	
 	public void addEmployee(Employees newEmployee) {
 		this.employeeList.add(newEmployee);
+	}
+	
+	public void setMenuItems(MenuItems newUserMenuItems) {
+		this.userMenuItems = newUserMenuItems;
 	}
 
 }

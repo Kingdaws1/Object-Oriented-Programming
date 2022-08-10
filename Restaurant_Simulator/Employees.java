@@ -5,6 +5,7 @@ public abstract class Employees {
 	double payPerDay = 0.0;
 	int daysPerWeekWorked = 0;
 	String[] workDays;
+	double addsToMultiplier = 0;
 	
 	public Employees() {
 		double payPerDay = 0.0;

@@ -79,6 +79,10 @@ public class Restaurant_Simulator {
 		boolean employeeChoiceLoop = false;
 		boolean weekdaysCovered = false;
 		boolean weekendsCovered = false;
+		Employees john = new EmployeeJohn();
+		Employees bob = new EmployeeBob();
+		Employees mary = new EmployeeMary();
+		Employees jane = new EmployeeJane();
 		while (employeeChoiceLoop == false) {
 			System.out.println("Enter an option to learn about the employee candidate: \n"
 					+ "1. John \n"
@@ -87,7 +91,6 @@ public class Restaurant_Simulator {
 					+ "4. Jane");
 			int employeeChoice = input.nextInt();
 			if (employeeChoice == 1) {
-				Employees john = new EmployeeJohn();
 				if (newUser.employeeList.contains(john)) {
 					System.out.println("You have already hired John.");
 				}
@@ -103,7 +106,6 @@ public class Restaurant_Simulator {
 				}
 			}
 			if (employeeChoice == 2) {
-				Employees bob = new EmployeeBob();
 				if (newUser.employeeList.contains(bob)) {
 					System.out.println("You have already hired Bob.");
 				}
@@ -119,7 +121,6 @@ public class Restaurant_Simulator {
 				}
 			}
 			if (employeeChoice == 3) {
-				Employees mary = new EmployeeMary();
 				if (newUser.employeeList.contains(mary)) {
 					System.out.println("You have already hired Mary.");
 				}
@@ -135,7 +136,6 @@ public class Restaurant_Simulator {
 				}
 			}
 			if (employeeChoice == 4) {
-				Employees jane = new EmployeeJane();
 				if (newUser.employeeList.contains(jane)) {
 					System.out.println("You have already hired Jane.");
 				}
@@ -158,10 +158,43 @@ public class Restaurant_Simulator {
 						+ "all of the days of the week will be covered.");
 			}
 		}
-		System.out.println("Enter the amount of supplies you would like to order \n"
-				+ "for the first week: ");
-		System.out.println("Enter the price would like to sell your items at: ");
-		System.out.println("Enter an option for advertising: \n"
+		MenuItems newMenuItems = new MenuItems();
+		newUser.setMenuItems(newMenuItems);
+		System.out.println("Enter a name for your first of three menu items: ");
+		String userMenuItem1Name = input.next();
+		newUser.userMenuItems.setItem1Name(userMenuItem1Name);
+		System.out.println("Enter a name for your second of three menu items: ");
+		String userMenuItem2Name = input.next();
+		newUser.userMenuItems.setItem2Name(userMenuItem2Name);
+		System.out.println("Enter a name for your last of three menu items: ");
+		String userMenuItem3Name = input.next();
+		newUser.userMenuItems.setItem3Name(userMenuItem3Name);
+		newUser.userMenuItems.setItem1IngredientsArray();
+		newUser.userMenuItems.setItem2IngredientsArray();
+		newUser.userMenuItems.setItem3IngredientsArray();
+		System.out.print("Enter the total cost of " + newUser.userMenuItems.getItem1Name() + ": ");
+		double userTotalCostOfItem1 = input.nextDouble();
+		newUser.userMenuItems.setTotalCostOfItem1(userTotalCostOfItem1);
+		System.out.print("Enter the total cost of " + newUser.userMenuItems.getItem2Name() + ": ");
+		double userTotalCostOfItem2 = input.nextDouble();
+		newUser.userMenuItems.setTotalCostOfItem2(userTotalCostOfItem2);
+		System.out.print("Enter the total cost of " + newUser.userMenuItems.getItem3Name() + ": ");
+		double userTotalCostOfItem3 = input.nextDouble();
+		newUser.userMenuItems.setTotalCostOfItem3(userTotalCostOfItem3);
+		System.out.println("Its time to set your sales prices for your items. Keep in \n"
+				+ "mind that if your prices are too high you will get less sales \n"
+				+ "and lower prices tend to increase sales. Typical food items \n"
+				+ "cost around 12$ in your area.");
+		System.out.println("Enter the sales price for " + newUser.userMenuItems.getItem1Name() + ": ");
+		double userSalesPriceForItem1 = input.nextDouble();
+		newUser.userMenuItems.setSalePriceOfItem1(userSalesPriceForItem1);
+		System.out.println("Enter the sales price for " + newUser.userMenuItems.getItem2Name() + ": ");
+		double userSalesPriceForItem2 = input.nextDouble();
+		newUser.userMenuItems.setSalePriceOfItem2(userSalesPriceForItem2);
+		System.out.println("Enter the sales price for " + newUser.userMenuItems.getItem3Name() + ": ");
+		double userSalesPriceForItem3 = input.nextDouble();
+		newUser.userMenuItems.setSalePriceOfItem3(userSalesPriceForItem3);
+		System.out.println("Enter an option for advertising for the week: \n"
 				+ "1. No advertising (0$) \n"
 				+ "2. Billboard ad (500$) \n"
 				+ "3. Radio ad (250$) \n"
@@ -169,16 +202,10 @@ public class Restaurant_Simulator {
 		System.out.println("Your Restaurant Is Open!");
 		DayOfWeek userDay = new DayOfWeek();
 		System.out.println(userDay.getStringDay() + " Week: " + userDay.getWeek());
-		System.out.println("It is 3pm, so far you have served (insert number of people) "
-				+ "and earned (insert money made)");
 		System.out.println("It is 10pm, today you served (insert number of people) "
 				+ "and earned (insert money made)");
 		System.out.println("Your budget now reads: ");
-		System.out.println("Enter the amount of supplies you would like to order \n"
-				+ "for the next week: ");
 		System.out.println("Enter the price would like to sell your items at: ");
-		System.out.println("Here is your employee evaluations for the week: ");
-		System.out.println("Would you like to hire/fire employees? Enter yes or no: ");
 		System.out.println("Enter an option for advertising option for the next week: \n"
 				+ "1. No advertising (0$) \n"
 				+ "2. Billboard ad (500$) \n"
