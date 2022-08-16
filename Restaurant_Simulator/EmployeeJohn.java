@@ -1,18 +1,24 @@
+import java.util.ArrayList;
 
 public class EmployeeJohn extends Employees{
 
 	String name = "John";
 	double payPerDay = 150;
 	int daysPerWeekWorked = 4;
-	String[] workDays = {
-			"Monday", "Tuesday", "Wednesday", "Thursday"
-	};
 	double addsToMultiplier = 0.2;
+	ArrayList<String> workDays = new ArrayList<>();
+	
+	public void addWorkDays() {
+		this.workDays.add("Monday");
+		this.workDays.add("Tuesday");
+		this.workDays.add("Wednesday");
+		this.workDays.add("Thursday");
+	}
 	
 	public String getWorkDays() {
 		String workDaysString = "";
-		for (int i = 0; i < workDays.length; i ++) {
-			workDaysString += workDays[i];
+		for (int i = 0; i < workDays.size(); i ++) {
+			workDaysString += workDays.get(i);
 			workDaysString += " ";
 		}
 		return(workDaysString);

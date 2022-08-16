@@ -80,9 +80,13 @@ public class Restaurant_Simulator {
 		boolean weekdaysCovered = false;
 		boolean weekendsCovered = false;
 		Employees john = new EmployeeJohn();
+		john.addWorkDays();
 		Employees bob = new EmployeeBob();
+		bob.addWorkDays();
 		Employees mary = new EmployeeMary();
+		mary.addWorkDays();
 		Employees jane = new EmployeeJane();
+		jane.addWorkDays();
 		while (employeeChoiceLoop == false) {
 			System.out.println("Enter an option to learn about the employee candidate: \n"
 					+ "1. John \n"
@@ -194,24 +198,64 @@ public class Restaurant_Simulator {
 		System.out.println("Enter the sales price for " + newUser.userMenuItems.getItem3Name() + ": ");
 		double userSalesPriceForItem3 = input.nextDouble();
 		newUser.userMenuItems.setSalePriceOfItem3(userSalesPriceForItem3);
-		System.out.println("Enter an option for advertising for the week: \n"
-				+ "1. No advertising (0$) \n"
-				+ "2. Billboard ad (500$) \n"
-				+ "3. Radio ad (250$) \n"
-				+ "4. TV ad (750$)");
 		System.out.println("Your Restaurant Is Open!");
 		DayOfWeek userDay = new DayOfWeek();
-		System.out.println(userDay.getStringDay() + " Week: " + userDay.getWeek());
-		System.out.println("It is 10pm, today you served (insert number of people) "
-				+ "and earned (insert money made)");
-		System.out.println("Your budget now reads: ");
-		System.out.println("Enter the price would like to sell your items at: ");
-		System.out.println("Enter an option for advertising option for the next week: \n"
-				+ "1. No advertising (0$) \n"
-				+ "2. Billboard ad (500$) \n"
-				+ "3. Radio ad (250$) \n"
-				+ "4. TV ad (750$)");
+		newUser.setUserDayOfWeek(userDay);
+		newUser.getAdvertisingMultiplier();
+		gameLoop(newUser);
 
+	}
+	
+	public static void gameLoop(User existingUser) {
+		Scanner input = new Scanner(System.in);
+		String priceChange = "";
+		if (existingUser.userDay.getDayOfWeek() % 7 == 0) {
+			existingUser.getAdvertisingMultiplier();
+		}
+		int totalItem1s = 0;
+		int totalItem2s = 0;
+		int totalItem3s = 0;
+		int randomItemChoice = 0;
+		for (int i = 0; i < existingUser.getCustomers(); i++) {
+			randomItemChoice = (int) (Math.random() * 100);
+			if (randomItemChoice < 34) {
+				totalItem1s += 1;
+			}
+			if (randomItemChoice < 67) {
+				totalItem2s += 1;
+			}
+			else {
+				totalItem3s += 1;
+			}
+		}
+		double dailySalesTotal = (existingUser.userMenuItems.salePriceOfItem1 * totalItem1s) 
+				+ (existingUser.userMenuItems.salePriceOfItem2 * totalItem2s) 
+				+ (existingUser.userMenuItems.salePriceOfItem3 * totalItem3s);
+		double dailyExpenseTotal = (existingUser.userMenuItems.totalCostOfItem1 * totalItem1s) 
+				+ (existingUser.userMenuItems.totalCostOfItem2 * totalItem2s) 
+				+ (existingUser.userMenuItems.totalCostOfItem3 * totalItem3s);
+		double dailyNetTotal = dailySalesTotal - dailyExpenseTotal;
+		existingUser.addToTotalMoney(dailyNetTotal);
+		System.out.println(existingUser.userDay.getStringDay() + " Week: " + existingUser.userDay.getWeek());
+		System.out.println("It is 10pm, today you served " + existingUser.getCustomers()
+				+ " and earned a net gain of " + dailyNetTotal);
+		System.out.println("Your total capital now reads: \n"
+				+ existingUser.getTotalMoney());
+		System.out.println("Would you like to change your prices for the next day? \n"
+				+ "Type 'yes' or 'no': ");
+		priceChange = input.next();
+		if (priceChange.equalsIgnoreCase("yes")) {
+			System.out.println("Enter the sales price for " + existingUser.userMenuItems.getItem1Name() + ": ");
+			double userSalesPriceForItem1 = input.nextDouble();
+			existingUser.userMenuItems.setSalePriceOfItem1(userSalesPriceForItem1);
+			System.out.println("Enter the sales price for " + existingUser.userMenuItems.getItem2Name() + ": ");
+			double userSalesPriceForItem2 = input.nextDouble();
+			existingUser.userMenuItems.setSalePriceOfItem2(userSalesPriceForItem2);
+			System.out.println("Enter the sales price for " + existingUser.userMenuItems.getItem3Name() + ": ");
+			double userSalesPriceForItem3 = input.nextDouble();
+			existingUser.userMenuItems.setSalePriceOfItem3(userSalesPriceForItem3);
+		}
+	
 	}
 
 }

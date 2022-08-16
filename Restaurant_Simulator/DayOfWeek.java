@@ -7,11 +7,11 @@ public class DayOfWeek {
 	
 	public DayOfWeek() {
 		int day = 1;
-		int week = 0;
+		int week = 1;
 	}
 	
 	public int getDayOfWeek() {
-		return(day);
+		return(this.day);
 	}
 	
 	public void setDayOfWeek(int newDay) {
@@ -48,7 +48,7 @@ public class DayOfWeek {
 	}
 	
 	public int getWeek() {
-		week = day / 7;
+		week = (day / 7) + 1;
 		return(week);
 	}
 

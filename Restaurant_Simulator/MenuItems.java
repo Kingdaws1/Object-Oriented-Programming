@@ -153,5 +153,11 @@ public class MenuItems {
 	public double getSalePriceOfItem3() {
 		return(this.salePriceOfItem3);
 	}
+	
+	public double getSalePriceAddsToMultiplier() {
+		double totalSalesPrice = this.salePriceOfItem1 + this.salePriceOfItem2 + this.salePriceOfItem3;
+		double salePriceAddsToMultiplier = (36 - totalSalesPrice) / 20;
+		return(salePriceAddsToMultiplier);
+	}
 
 }
