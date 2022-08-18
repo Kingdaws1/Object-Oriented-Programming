@@ -10,31 +10,40 @@ public class Restaurant_Simulator {
 		newUser.setName(name);
 		System.out.println("Welcome to the restaurant industry " + newUser.getName() + "!");
 		boolean typeCheck = false;
+		int userType = 0;
 		while (typeCheck == false) {
-			System.out.println("Please enter an option for your restaurant genre: \n"
+			System.out.println("Please enter a number option for your restaurant genre: \n"
 					+ "1. Italian \n"
 					+ "2. Mexican \n"
 					+ "3. American \n"
 					+ "4. Chinese");
-			int userType = input.nextInt();
-			if (userType == 1) {
-				newUser.setRestaurantType("Italian");
-				typeCheck = true;
-			}
-			else if (userType == 2) {
-				newUser.setRestaurantType("Mexican");
-				typeCheck = true;
-					}
-			else if (userType == 3) {
-				newUser.setRestaurantType("American");
-				typeCheck = true;
-			}
-			else if (userType == 4) {
-				newUser.setRestaurantType("Chinese");
-				typeCheck = true;
+			String firstUserType = input.next();
+			if (firstUserType.length() != 1) {
+				typeCheck = false;
 			}
 			else {
-				System.out.println("Please input a valid number.");
+				char nextUserType = firstUserType.charAt(0);
+				if (Character.isDigit(nextUserType))
+					userType = Character.getNumericValue(nextUserType);
+					if (userType == 1) {
+						newUser.setRestaurantType("Italian");
+						typeCheck = true;
+					}
+					else if (userType == 2) {
+						newUser.setRestaurantType("Mexican");
+						typeCheck = true;
+							}
+					else if (userType == 3) {
+						newUser.setRestaurantType("American");
+						typeCheck = true;
+					}
+					else if (userType == 4) {
+						newUser.setRestaurantType("Chinese");
+						typeCheck = true;
+					}
+					else {
+						System.out.println("Please input a valid number.");
+					}
 			}
 		}
 		System.out.println("Aweseome! Your restaurant name will be " + newUser.getRestaurantName());
@@ -44,49 +53,69 @@ public class Restaurant_Simulator {
 					+ "1. Main Street Hole \n"
 					+ "2. Outdoor Mall Corner \n"
 					+ "3. Business Zone Stand Alone");
-			int locationChoice = input.nextInt();
-			if (locationChoice == 1) {
-				Main_street_hole.getDescription();
-				System.out.println("Choose this location? Type 'yes' or 'no': ");
-				String yesOrNoInput = input.next();
-				if (yesOrNoInput.equalsIgnoreCase("yes")) {
-					Locations userLocation = new Main_street_hole();
-					newUser.setLocation(userLocation);
-					locationLoop = true;
+				int locationChoice = input.nextInt();
+				if (locationChoice == 1) {
+					Main_street_hole.getDescription();
+					System.out.println("Choose this location? Type 'yes' or 'no': ");
+					String yesOrNoInput = input.next();
+					if (yesOrNoInput.equalsIgnoreCase("yes")) {
+						Locations userLocation = new Main_street_hole();
+						newUser.setLocation(userLocation);
+						locationLoop = true;
+					}
 				}
-			}
-			else if (locationChoice == 2) {
-				Outdoor_mall_corner.getDescription();
-				System.out.println("Choose this location? Type 'yes' or 'no': ");
-				String yesOrNoInput = input.next();
-				if (yesOrNoInput.equalsIgnoreCase("yes")) {
-					Locations userLocation = new Outdoor_mall_corner();
-					newUser.setLocation(userLocation);
-					locationLoop = true;
+				else if (locationChoice == 2) {
+					Outdoor_mall_corner.getDescription();
+					System.out.println("Choose this location? Type 'yes' or 'no': ");
+					String yesOrNoInput = input.next();
+					if (yesOrNoInput.equalsIgnoreCase("yes")) {
+						Locations userLocation = new Outdoor_mall_corner();
+						newUser.setLocation(userLocation);
+						locationLoop = true;
+					}
 				}
-			}
-			else if (locationChoice == 3) {
-				Business_zone_stand_alone.getDescription();
-				System.out.println("Choose this location? Type 'yes' or 'no': ");
-				String yesOrNoInput = input.next();
-				if (yesOrNoInput.equalsIgnoreCase("yes")) {
-					Locations userLocation = new Business_zone_stand_alone();
-					newUser.setLocation(userLocation);
-					locationLoop = true;
+				else if (locationChoice == 3) {
+					Business_zone_stand_alone.getDescription();
+					System.out.println("Choose this location? Type 'yes' or 'no': ");
+					String yesOrNoInput = input.next();
+					if (yesOrNoInput.equalsIgnoreCase("yes")) {
+						Locations userLocation = new Business_zone_stand_alone();
+						newUser.setLocation(userLocation);
+						locationLoop = true;
+					}
 				}
-			}
 		}
 		boolean employeeChoiceLoop = false;
 		boolean weekdaysCovered = false;
 		boolean weekendsCovered = false;
-		Employees john = new EmployeeJohn();
+		Employees john = new Employees();
 		john.addWorkDays();
-		Employees bob = new EmployeeBob();
+		john.setName("John");
+		john.setAddsToMultiplier(0.2);
+		john.setDaysPerWeekWorked(4);
+		john.setPayPerDay(150);
+		john.addWeekDays();
+		Employees bob = new Employees();
 		bob.addWorkDays();
-		Employees mary = new EmployeeMary();
+		bob.setName("Bob");
+		bob.setAddsToMultiplier(0.0);
+		bob.setDaysPerWeekWorked(3);
+		bob.setPayPerDay(120);
+		bob.addWeekendDays();
+		Employees mary = new Employees();
 		mary.addWorkDays();
-		Employees jane = new EmployeeJane();
+		mary.setName("John");
+		mary.setAddsToMultiplier(0.2);
+		mary.setDaysPerWeekWorked(4);
+		mary.setPayPerDay(150);
+		mary.addWeekDays();
+		Employees jane = new Employees();
 		jane.addWorkDays();
+		jane.setName("Bob");
+		jane.setAddsToMultiplier(0.0);
+		jane.setDaysPerWeekWorked(3);
+		jane.setPayPerDay(120);
+		jane.addWeekendDays();
 		while (employeeChoiceLoop == false) {
 			System.out.println("Enter an option to learn about the employee candidate: \n"
 					+ "1. John \n"
@@ -99,7 +128,7 @@ public class Restaurant_Simulator {
 					System.out.println("You have already hired John.");
 				}
 				else {
-				john.description();
+				john.descriptionJohn();;
 				System.out.println("Hire this employee? \n"
 						+ "Type yes or no: ");
 				String employeeYesOrNo = input.next();
@@ -114,7 +143,7 @@ public class Restaurant_Simulator {
 					System.out.println("You have already hired Bob.");
 				}
 				else {
-				bob.description();
+				bob.descriptionBob();
 				System.out.println("Hire this employee? \n"
 						+ "Type yes or no: ");
 				String employeeYesOrNo = input.next();
@@ -129,7 +158,7 @@ public class Restaurant_Simulator {
 					System.out.println("You have already hired Mary.");
 				}
 				else {
-				mary.description();
+				mary.descriptionMary();
 				System.out.println("Hire this employee? \n"
 						+ "Type yes or no: ");
 				String employeeYesOrNo = input.next();
@@ -144,7 +173,7 @@ public class Restaurant_Simulator {
 					System.out.println("You have already hired Jane.");
 				}
 				else {
-				jane.description();
+				jane.descriptionJane();
 				System.out.println("Hire this employee? \n"
 						+ "Type yes or no: ");
 				String employeeYesOrNo = input.next();
@@ -173,16 +202,13 @@ public class Restaurant_Simulator {
 		System.out.println("Enter a name for your last of three menu items: ");
 		String userMenuItem3Name = input.next();
 		newUser.userMenuItems.setItem3Name(userMenuItem3Name);
-		newUser.userMenuItems.setItem1IngredientsArray();
-		newUser.userMenuItems.setItem2IngredientsArray();
-		newUser.userMenuItems.setItem3IngredientsArray();
-		System.out.print("Enter the total cost of " + newUser.userMenuItems.getItem1Name() + ": ");
+		System.out.print("Enter the total production cost of " + newUser.userMenuItems.getItem1Name() + ": ");
 		double userTotalCostOfItem1 = input.nextDouble();
 		newUser.userMenuItems.setTotalCostOfItem1(userTotalCostOfItem1);
-		System.out.print("Enter the total cost of " + newUser.userMenuItems.getItem2Name() + ": ");
+		System.out.print("Enter the total production cost of " + newUser.userMenuItems.getItem2Name() + ": ");
 		double userTotalCostOfItem2 = input.nextDouble();
 		newUser.userMenuItems.setTotalCostOfItem2(userTotalCostOfItem2);
-		System.out.print("Enter the total cost of " + newUser.userMenuItems.getItem3Name() + ": ");
+		System.out.print("Enter the total production cost of " + newUser.userMenuItems.getItem3Name() + ": ");
 		double userTotalCostOfItem3 = input.nextDouble();
 		newUser.userMenuItems.setTotalCostOfItem3(userTotalCostOfItem3);
 		System.out.println("Its time to set your sales prices for your items. Keep in \n"
@@ -218,7 +244,11 @@ public class Restaurant_Simulator {
 				System.out.println("It is time to give your employees their paychecks.\n"
 						+ existingUser.employeeList.get(0).getName() + " Earned: " + existingUser.employeeList.get(0).getPayCheck() + "\n"
 				+ existingUser.employeeList.get(1).getName() + " Earned: " + existingUser.employeeList.get(1).getPayCheck());
-				existingUser.addToTotalMoney(existingUser.employeeList.get(0).getPayCheck() + existingUser.employeeList.get(1).getPayCheck());
+				existingUser.addToTotalMoney((-1) * (existingUser.getEmployeePayCheck(0) + existingUser.getEmployeePayCheck(1)));
+			}
+			if (existingUser.userDay.getDayOfWeek() % 28 == 0) {
+				System.out.println("Rent is due today. You will pay: " + existingUser.getRent());
+				existingUser.addToTotalMoney((-1) * existingUser.getRent());
 			}
 			int totalItem1s = 0;
 			int totalItem2s = 0;

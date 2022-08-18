@@ -137,5 +137,10 @@ public class User {
 	public double getTotalMoney() {
 		return(this.totalMoney);
 	}
+	
+	public double getEmployeePayCheck(int employee) {
+		Employees yourEmployee = this.employeeList.get(employee);
+		return(yourEmployee.getPayCheck());
+	}
 
 }
