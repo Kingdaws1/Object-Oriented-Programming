@@ -37,7 +37,7 @@ public class EmployeeMary extends Employees{
 	}
 	
 	public void description() {
-		System.out.println("John: \n"
+		System.out.println("Mary: \n"
 				+ "A freindly woman who has experience working in the restaurant feild. \n"
 				+ "Pay per day: " + this.getPayPerDay() + " \n"
 				+ "Works days: " + this.getWorkDays());

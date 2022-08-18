@@ -61,8 +61,9 @@ public class User {
 	}
 	
 	public double getMultiplier() {
-		multiplier = this.userLocation.getMultiplier() + this.advertisingMultiplier
-		+ this.getEmployeeMultiplier() + this.userMenuItems.getSalePriceAddsToMultiplier();
+		multiplier = this.userLocation.getMultiplier() + this.getAdvertisingMultiplier()
+		+ this.getEmployeeMultiplier() + this.userMenuItems.getSalePriceAddsToMultiplier()
+		+ this.userDay.getDayOfWeekMultiplier();
 		return(multiplier);
 	}
 
@@ -86,7 +87,7 @@ public class User {
 		this.advertisingWeek = newAdvertisingWeek;
 	}
 	
-	public double getAdvertisingMultiplier() {
+	public void setAdvertisingMultiplier() {
 		System.out.println("Enter an option for advertising for the week: \n"
 				+ "1. No advertising (0$) \n"
 				+ "2. Billboard ad (500$) \n"
@@ -97,18 +98,25 @@ public class User {
 		double newAdvertisingMultiplier = 0.0;
 		if (advertisingOption == 1) {
 			newAdvertisingMultiplier = 0.0;
+			this.totalMoney += 0;
 		}
 		else if (advertisingOption == 2) {
 			newAdvertisingMultiplier = 0.5;
+			this.totalMoney += -500;
 		}
 		else if (advertisingOption == 3) {
 			newAdvertisingMultiplier = 0.25;
+			this.totalMoney += -250;
 		}
-		else if (advertisingOption == 4) {
+		else {
 			newAdvertisingMultiplier = 0.75;
+			this.totalMoney += -750;
 		}
 		this.advertisingMultiplier = newAdvertisingMultiplier;
-		return(newAdvertisingMultiplier);
+	}
+	
+	public double getAdvertisingMultiplier() {
+		return(this.advertisingMultiplier);
 	}
 	
 	public double getEmployeeMultiplier() {

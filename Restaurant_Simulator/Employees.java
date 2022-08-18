@@ -23,5 +23,22 @@ public abstract class Employees {
 	}
 	
 	public void addWorkDays() {}
+	
+	public int getDaysPerWeekWorked() {
+		return(this.daysPerWeekWorked);
+	}
+	
+	public double getPayPerDay() {
+		return(this.payPerDay);
+	}
+	
+	public double getPayCheck() {
+		double payCheck = (this.getDaysPerWeekWorked() * 2) * this.getPayPerDay();
+		return(payCheck);
+	}
+	
+	public String getName() {
+		return(this.name);
+	}
 
 }

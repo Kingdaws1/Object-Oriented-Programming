@@ -201,7 +201,7 @@ public class Restaurant_Simulator {
 		System.out.println("Your Restaurant Is Open!");
 		DayOfWeek userDay = new DayOfWeek();
 		newUser.setUserDayOfWeek(userDay);
-		newUser.getAdvertisingMultiplier();
+		newUser.setAdvertisingMultiplier();
 		gameLoop(newUser);
 
 	}
@@ -209,51 +209,60 @@ public class Restaurant_Simulator {
 	public static void gameLoop(User existingUser) {
 		Scanner input = new Scanner(System.in);
 		String priceChange = "";
-		if (existingUser.userDay.getDayOfWeek() % 7 == 0) {
-			existingUser.getAdvertisingMultiplier();
-		}
-		int totalItem1s = 0;
-		int totalItem2s = 0;
-		int totalItem3s = 0;
-		int randomItemChoice = 0;
-		for (int i = 0; i < existingUser.getCustomers(); i++) {
-			randomItemChoice = (int) (Math.random() * 100);
-			if (randomItemChoice < 34) {
-				totalItem1s += 1;
+		while (existingUser.getTotalMoney() < 1000000) {
+			existingUser.userDay.nextDay();
+			if (existingUser.userDay.getDayOfWeek() % 7 == 0) {
+				existingUser.setAdvertisingMultiplier();
 			}
-			if (randomItemChoice < 67) {
-				totalItem2s += 1;
+			if (existingUser.userDay.getDayOfWeek() % 14 == 0) {
+				System.out.println("It is time to give your employees their paychecks.\n"
+						+ existingUser.employeeList.get(0).getName() + " Earned: " + existingUser.employeeList.get(0).getPayCheck() + "\n"
+				+ existingUser.employeeList.get(1).getName() + " Earned: " + existingUser.employeeList.get(1).getPayCheck());
+				existingUser.addToTotalMoney(existingUser.employeeList.get(0).getPayCheck() + existingUser.employeeList.get(1).getPayCheck());
 			}
-			else {
-				totalItem3s += 1;
+			int totalItem1s = 0;
+			int totalItem2s = 0;
+			int totalItem3s = 0;
+			int randomItemChoice = 0;
+			for (int i = 0; i < existingUser.getCustomers(); i++) {
+				randomItemChoice = (int) (Math.random() * 100);
+				if (randomItemChoice < 34) {
+					totalItem1s += 1;
+				}
+				if (randomItemChoice < 67) {
+					totalItem2s += 1;
+				}
+				else {
+					totalItem3s += 1;
+				}
 			}
-		}
-		double dailySalesTotal = (existingUser.userMenuItems.salePriceOfItem1 * totalItem1s) 
-				+ (existingUser.userMenuItems.salePriceOfItem2 * totalItem2s) 
-				+ (existingUser.userMenuItems.salePriceOfItem3 * totalItem3s);
-		double dailyExpenseTotal = (existingUser.userMenuItems.totalCostOfItem1 * totalItem1s) 
-				+ (existingUser.userMenuItems.totalCostOfItem2 * totalItem2s) 
-				+ (existingUser.userMenuItems.totalCostOfItem3 * totalItem3s);
-		double dailyNetTotal = dailySalesTotal - dailyExpenseTotal;
-		existingUser.addToTotalMoney(dailyNetTotal);
-		System.out.println(existingUser.userDay.getStringDay() + " Week: " + existingUser.userDay.getWeek());
-		System.out.println("It is 10pm, today you served " + existingUser.getCustomers()
-				+ " and earned a net gain of " + dailyNetTotal);
-		System.out.println("Your total capital now reads: \n"
-				+ existingUser.getTotalMoney());
-		System.out.println("Would you like to change your prices for the next day? \n"
-				+ "Type 'yes' or 'no': ");
-		priceChange = input.next();
-		if (priceChange.equalsIgnoreCase("yes")) {
-			System.out.println("Enter the sales price for " + existingUser.userMenuItems.getItem1Name() + ": ");
-			double userSalesPriceForItem1 = input.nextDouble();
-			existingUser.userMenuItems.setSalePriceOfItem1(userSalesPriceForItem1);
-			System.out.println("Enter the sales price for " + existingUser.userMenuItems.getItem2Name() + ": ");
-			double userSalesPriceForItem2 = input.nextDouble();
-			existingUser.userMenuItems.setSalePriceOfItem2(userSalesPriceForItem2);
-			System.out.println("Enter the sales price for " + existingUser.userMenuItems.getItem3Name() + ": ");
-			double userSalesPriceForItem3 = input.nextDouble();
-			existingUser.userMenuItems.setSalePriceOfItem3(userSalesPriceForItem3);
+			double dailySalesTotal = (existingUser.userMenuItems.salePriceOfItem1 * totalItem1s) 
+					+ (existingUser.userMenuItems.salePriceOfItem2 * totalItem2s) 
+					+ (existingUser.userMenuItems.salePriceOfItem3 * totalItem3s);
+			double dailyExpenseTotal = (existingUser.userMenuItems.totalCostOfItem1 * totalItem1s) 
+					+ (existingUser.userMenuItems.totalCostOfItem2 * totalItem2s) 
+					+ (existingUser.userMenuItems.totalCostOfItem3 * totalItem3s);
+			double dailyNetTotal = dailySalesTotal - dailyExpenseTotal;
+			existingUser.addToTotalMoney(dailyNetTotal);
+			System.out.println(existingUser.userDay.getStringDay() + " Week: " + existingUser.userDay.getWeek());
+			System.out.println("It is 10pm, today you served " + existingUser.getCustomers()
+					+ " and earned a net gain of " + dailyNetTotal);
+			System.out.println("Your total capital now reads: \n"
+					+ existingUser.getTotalMoney());
+			System.out.println("Would you like to change your prices for the next day? \n"
+					+ "Type 'yes' or 'no': ");
+			priceChange = input.next();
+			if (priceChange.equalsIgnoreCase("yes")) {
+				System.out.println("Enter the sales price for " + existingUser.userMenuItems.getItem1Name() + ": ");
+				double userSalesPriceForItem1 = input.nextDouble();
+				existingUser.userMenuItems.setSalePriceOfItem1(userSalesPriceForItem1);
+				System.out.println("Enter the sales price for " + existingUser.userMenuItems.getItem2Name() + ": ");
+				double userSalesPriceForItem2 = input.nextDouble();
+				existingUser.userMenuItems.setSalePriceOfItem2(userSalesPriceForItem2);
+				System.out.println("Enter the sales price for " + existingUser.userMenuItems.getItem3Name() + ": ");
+				double userSalesPriceForItem3 = input.nextDouble();
+				existingUser.userMenuItems.setSalePriceOfItem3(userSalesPriceForItem3);
+			}
 		}
 	
 	}

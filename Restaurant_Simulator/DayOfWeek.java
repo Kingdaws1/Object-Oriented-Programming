@@ -1,7 +1,7 @@
 
 public class DayOfWeek {
 
-	int day = 1;
+	int day = 0;
 	int week = 0;
 	String stringDay = "Monday";
 	
@@ -23,33 +23,63 @@ public class DayOfWeek {
 	}
 	
 	public String getStringDay() {
-		if (day % 7 == 1) {
-			stringDay = "Monday";
+		if (this.day % 7 == 1) {
+			this.stringDay = "Monday";
 		}
-		if (day % 7 == 2) {
-			stringDay = "Tuesday";
+		if (this.day % 7 == 2) {
+			this.stringDay = "Tuesday";
 		}
-		if (day % 7 == 3) {
-			stringDay = "Wednesday";
+		if (this.day % 7 == 3) {
+			this.stringDay = "Wednesday";
 		}
-		if (day % 7 == 4) {
-			stringDay = "Thursday";
+		if (this.day % 7 == 4) {
+			this.stringDay = "Thursday";
 		}
-		if (day % 7 == 5) {
-			stringDay = "Friday";
+		if (this.day % 7 == 5) {
+			this.stringDay = "Friday";
 		}
-		if (day % 7 == 6) {
-			stringDay = "Saturday";
+		if (this.day % 7 == 6) {
+			this.stringDay = "Saturday";
 		}
-		if (day % 7 == 0) {
-			stringDay = "Sunday";
+		if (this.day % 7 == 0) {
+			this.stringDay = "Sunday";
 		}
-		return(stringDay);
+		return(this.stringDay);
 	}
 	
 	public int getWeek() {
-		week = (day / 7) + 1;
+		this.week = (this.day / 7) + 1;
 		return(week);
+	}
+	
+	public void nextDay() {
+		this.day += 1;
+	}
+	
+	public double getDayOfWeekMultiplier() {
+		double dayOfWeekMultiplier = 0.0;
+		if (this.getStringDay() == "Monday") {
+			dayOfWeekMultiplier = -0.3;
+		}
+		if (this.getStringDay() == "Tuesday") {
+			dayOfWeekMultiplier = -0.3;
+		}
+		if (this.getStringDay() == "Wednesday") {
+			dayOfWeekMultiplier = -0.3;
+		}
+		if (this.getStringDay() == "Thursday") {
+			dayOfWeekMultiplier = -0.3;
+		}
+		if (this.getStringDay() == "Friday") {
+			dayOfWeekMultiplier = 0.0;
+		}
+		if (this.getStringDay() == "Saturday") {
+			dayOfWeekMultiplier = 0.0;
+		}
+		if (this.getStringDay() == "Sunday") {
+			dayOfWeekMultiplier = 0.0;
+		}
+		return(dayOfWeekMultiplier);
 	}
 
 }
